@@ -1,0 +1,23 @@
+// *** Margins ***
+@include generateIndentation('app-h-m', $indentationSteps, margin);
+@include generateIndentation('app-h-mt', $indentationSteps, margin-top);
+@include generateIndentation('app-h-mr', $indentationSteps, margin-right);
+@include generateIndentation('app-h-mb', $indentationSteps, margin-bottom);
+@include generateIndentation('app-h-ml', $indentationSteps, margin-left);
+@include generateIndentation('app-h-mh', $indentationSteps, margin-left margin-right);
+@include generateIndentation('app-h-mv', $indentationSteps, margin-top margin-bottom);
+@include generateIndentation('app-h-n_m', $indentationSteps, margin, $negative: true);
+@include generateIndentation('app-h-n_mt', $indentationSteps, margin-top, $negative: true);
+@include generateIndentation('app-h-n_mr', $indentationSteps, margin-right, $negative: true);
+@include generateIndentation('app-h-n_mb', $indentationSteps, margin-bottom, $negative: true);
+@include generateIndentation('app-h-n_ml', $indentationSteps, margin-left, $negative: true);
+@include generateIndentation('app-h-n_mh', $indentationSteps, margin-left margin-right, $negative: true);
+
+// *** Paddings ***
+@include generateIndentation('app-h-p', $indentationSteps, padding);
+@include generateIndentation('app-h-pt', $indentationSteps, padding-top);
+@include generateIndentation('app-h-pr', $indentationSteps, padding-right);
+@include generateIndentation('app-h-pb', $indentationSteps, padding-bottom);
+@include generateIndentation('app-h-pl', $indentationSteps, padding-left);
+@include generateIndentation('app-h-ph', $indentationSteps, padding-left padding-right);
+@include generateIndentation('app-h-pv', $indentationSteps, padding-top padding-bottom);

@@ -1,0 +1,109 @@
+@include themify($themes, true) {
+  // colors
+  --color-text-highlighted: #{themed('color-text-highlighted')};
+  --color-text-75: #{themed('color-text-75')};
+  --color-text: #{themed('color-text')};
+  --color-text-plain: #{themed('color-text-plain')};
+  --color-text-disabled: #{themed('color-text-disabled')};
+  --color-primary: #{themed('color-primary')};
+  --color-secondary: #{themed('color-secondary')};
+  --RGB_color-secondary: #{hexToRGB(themed('color-secondary'))};
+  --color-secondary__lighten: #{lighten(themed('color-secondary'), 10%)};
+  --color-secondary__highlight: #{themed('color-secondary__highlight')};
+  --color-theme: #{themed('color-theme')};
+  --color-opposite: #{themed('color-opposite')};
+  --RGB_color-opposite: #{hexToRGB(themed('color-opposite'))};
+  --color-button-text: #{themed('color-button-text')};
+  --color-button-text__active: #{themed('color-button-text__active')};
+  // shadows
+  --box-shadow-default: #{themed('box-shadow-default')};
+  --box-shadow-cards-hover: #{themed('box-shadow-cards-hover')};
+  --box-shadow-dropdown: #{themed('box-shadow-dropdown')};
+  --box-shadow-chart--selected-bar: #{themed('box-shadow-chart--selected-bar')};
+  // backgrounds
+  // -- general
+  --bg-body: #{themed('bg-body')};
+  --RGB_bg-body: #{hexToRGB(themed('bg-body'))};
+  --bg-sidebar-overlay: #{themed('bg-sidebar-overlay')};
+  --bg-card: #{themed('bg-card')};
+  --RGB_bg-card: #{hexToRGB(themed('bg-card'))};
+  --bg-card__lighten: #{lighten(themed('bg-card'), 3%)};
+  --bg-code: #{themed('bg-code')};
+  --bg-separator: #{themed('bg-separator')};
+  --bg-separator__intensive: #{themed('bg-separator__intensive')};
+  // -- tables
+  --bg-table--row__even: #{themed('bg-table--row__even')};
+  --bg-table--row__active: #{themed('bg-table--row__active')};
+  --bg-table--header-cell__hover: #{themed('bg-table--header-cell__hover')};
+  --bg-table--header-cell__active: #{themed('bg-table--header-cell__active')};
+  --bg-combined-table--sidebar: #{themed('bg-combined-table--sidebar')};
+  --bg-combined-table--sidebar-border: #{themed('bg-combined-table--sidebar-border')};
+  // -- scroll
+  --bg-scroll-track: #{themed('bg-scroll-track')};
+  --bg-scroll-thumb: #{themed('bg-scroll-thumb')};
+  --bg-scroll-thumb--border: #{themed('bg-scroll-thumb--border')};
+  // -- tabs
+  --bg-tab__hover: #{themed('bg-tab__hover')};
+  --bg-tab__active: #{themed('bg-tab__active')};
+  // -- buttons
+  --bg-nav-button__hover: #{themed('bg-nav-button__hover')};
+  --bg-nav-button__active: #{themed('bg-nav-button__active')};
+  --bg-nav-step: #{themed('bg-nav-step')};
+  --bg-nav-step__hover: #{themed('bg-nav-step__hover')};
+  --bg-nav-step__active: #{themed('bg-nav-step__active')};
+  --bg-account-btn: #{themed('bg-account-btn')};
+  --bg-account-btn__hover: #{themed('bg-account-btn__hover')};
+  --bg-button__primary: #{themed('bg-button__primary')};
+  --bg-button__primary__before: #{themed('bg-button__primary__before')};
+  --bg-button__primary__hover: #{themed('bg-button__primary__hover')};
+  --bg-button__primary__active: #{themed('bg-button__primary__active')};
+  --bg-button__danger: #{themed('bg-button__danger')};
+  --bg-button__danger__before: #{themed('bg-button__danger__before')};
+  --bg-button__danger__hover: #{themed('bg-button__danger__hover')};
+  --bg-button__danger__active: #{themed('bg-button__danger__active')};
+  --bg-button__secondary: #{themed('bg-button__secondary')};
+  --bg-button__secondary__before: #{themed('bg-button__secondary__before')};
+  --bg-button__secondary__hover: #{themed('bg-button__secondary__hover')};
+  --bg-button__secondary__active: #{themed('bg-button__secondary__active')};
+  --bg-button__ghost__hover: #{themed('bg-button__ghost__hover')};
+  --bg-icon-button__hover: #{themed('bg-icon-button__hover')};
+  --bg-icon-button__active: #{themed('bg-icon-button__active')};
+  --bg-icon-button__danger__active: #{themed('bg-icon-button__danger__active')};
+  // -- form controls
+  --bg-form-control: #{themed('bg-form-control')};
+  --bg-form-control__hover: #{themed('bg-form-control__hover')};
+  --bg-form-control__focus: #{themed('bg-form-control__focus')};
+  --bg-form-control--autofilled: #{themed('bg-form-control--autofilled')};
+  --bg-form-control--autofilled__hover: #{themed('bg-form-control--autofilled__hover')};
+  --bg-form-control--autofilled__focus: #{themed('bg-form-control--autofilled__focus')};
+  --bg-toggle--switch: #{themed('bg-toggle--switch')};
+  --bg-toggle--switch__hover: #{themed('bg-toggle--switch__hover')};
+  --bg-toggle--trigger__on__disabled: #{themed('bg-toggle--trigger__on__disabled')};
+  // -- dropdowns
+  --bg-dropdown--item__hover: #{themed('bg-dropdown--item__hover')};
+  --bg-dropdown--item__active: #{themed('bg-dropdown--item__active')};
+  // -- charts
+  --bg-chart-overlay: #{themed('bg-chart-overlay')};
+  --bg-chart__scrollable: #{themed('bg-chart__scrollable')};
+  // -- confusion matrix
+  --bg-conf-matrix--row: #{themed('bg-conf-matrix--row')}; // <---
+  --bg-conf-matrix--cell__important: #{themed('bg-conf-matrix--cell__important')};
+  // -- page badge
+  --bg-page-badge: #{themed('bg-page-badge')};
+  // -- tags
+  --bg-tag-highlighted: #{themed('bg-tag-highlighted')};
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  line-height: 1.428571429;
+  font-family: $font-sansSerif;
+  font-size: $fontSize-normal;
+}

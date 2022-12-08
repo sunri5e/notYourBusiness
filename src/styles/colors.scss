@@ -1,0 +1,207 @@
+// Important
+$color-black:       #000 !default;
+$color-white:       #fff !default;
+$color-cyan:        #00adee !default;
+$color-deepSkyBlue: #017aff !default;
+$color-darkSkyBlue: #568edd !default;
+$color-darkSlate:   #344044 !default;
+$color-orange:      #f57f17 !default;
+$color-danger:      #df0f00 !default;
+$color-success:     #3ca661 !default;
+$color-warning:     #e89400 !default;
+
+// Old but used
+$color-grey:            #999 !default;
+$color-blue:            rgb(56, 194, 240) !default;
+$color-lightRose:       #edd9da !default;
+$color-slate:           #37474F !default;
+$color-lightSlate:      #455B64 !default;
+$color-redWarning:      #B34539;
+$color-darkerBlueGrey:  #546E7A !default;
+$color-lighterBlueGrey: #ECEFF1 !default;
+$color-snow:            #F7F9F9 !default;
+$color-darkerGrey:      #212121 !default;
+$color-darkGrey:        #494949 !default;
+$color-lightGrey:       #BFBFBF !default;
+$color-lighterGrey:     #ECECEC !default;
+$color-active:          $color-orange !default;
+$color-active-alt:      transparentize($color-active, 0.8) !default;
+$color-panelText:       $color-black !default;
+$color-red:             #df0f00 !default;
+
+
+
+$themes: (
+  dark: (
+    // colors
+    color-text-highlighted:             $color-white,
+    color-text-75:                      rgba($color-white, .75),
+    color-text:                         rgba($color-white, .5),
+    color-text-plain:                   #979b9c,
+    color-text-disabled:                rgba($color-white, .2),
+    color-primary:                      $color-orange,
+    color-secondary:                    $color-cyan,
+    color-secondary__highlight:         $color-darkSkyBlue,
+    color-theme:                        $color-black,
+    color-opposite:                     $color-white,
+    color-button-text:                  rgba($color-white, .9),
+    color-button-text__active:          $color-cyan,
+    // shadows
+    box-shadow-default:                 0 2px 5px 0 rgba($color-black, .35),
+    box-shadow-cards-hover:             0 4px 10px 0 rgba($color-black, .35),
+    box-shadow-dropdown:                0 2px 15px 0 rgba($color-black, .35),
+    box-shadow-chart--selected-bar:     url("#bar-shadow-dark"),
+    // backgrounds
+    // -- general
+    bg-body:                            #242C2F,
+    bg-sidebar-overlay:                 rgba($color-black, .1),
+    bg-card:                            $color-darkSlate,
+    bg-code:                            rgba($color-black, .3),
+    bg-separator:                       rgba($color-white, .1),
+    bg-separator__intensive:            rgba($color-white, .5),
+    // -- tables
+    bg-table--row__even:                rgba($color-white, .05),
+    bg-table--row__active:              rgba($color-black, .3),
+    bg-table--header-cell__hover:       rgba($color-black, .1),
+    bg-table--header-cell__active:      rgba($color-black, .3),
+    bg-combined-table--sidebar:         rgba($color-black, .3),
+    bg-combined-table--sidebar-border:  rgba($color-white, .3),
+    // -- scroll
+    bg-scroll-track:                    rgba($color-black, .2),
+    bg-scroll-thumb:                    rgba($color-white, .3),
+    bg-scroll-thumb--border:            #191f21,
+    // -- tabs
+    bg-tab__hover:                      rgba($color-black, .2),
+    bg-tab__active:                     rgba($color-black, .3),
+    // -- buttons
+    bg-nav-button__hover:               rgba($color-black, .2),
+    bg-nav-button__active:              rgba($color-black, .3),
+    bg-nav-step:                        rgba($color-black, .1),
+    bg-nav-step__hover:                 rgba($color-black, .2),
+    bg-nav-step__active:                rgba($color-black, .3),
+    bg-account-btn:                     rgba($color-black, .3),
+    bg-account-btn__hover:              rgba($color-black, .2),
+    bg-button__primary:                 linear-gradient(to bottom, rgba($color-orange, .9), rgba(darken($color-orange, 10%), .9)),
+    bg-button__primary__before:         linear-gradient(to bottom, $color-orange, darken($color-orange, 10%)),
+    bg-button__primary__active:         linear-gradient(to bottom, $color-orange, darken($color-orange, 5%)),
+    bg-button__danger:                  linear-gradient(to bottom, rgba($color-danger, .9), rgba(darken($color-danger, 10%), .9)),
+    bg-button__danger__before:          linear-gradient(to bottom, $color-danger, darken($color-danger, 10%)),
+    bg-button__danger__active:          linear-gradient(to bottom, $color-danger, darken($color-danger, 5%)),
+    bg-button__secondary:               linear-gradient(to bottom, rgba($color-white, .18), rgba($color-white, .08)),
+    bg-button__secondary__before:       linear-gradient(to bottom, rgba($color-white, .02), rgba($color-white, .02)),
+    bg-button__secondary__active:       rgba($color-white, .15),
+    bg-button__ghost__hover:            rgba($color-black, .2),
+    bg-icon-button__hover:              rgba($color-black, .2),
+    bg-icon-button__active:             rgba($color-black, .3),
+    bg-icon-button__danger__active:     rgba($color-black, .3),
+    // -- form controls
+    bg-form-control:                    rgba($color-white, .1),
+    bg-form-control__hover:             rgba($color-white, .15),
+    bg-form-control__focus:             rgba($color-black, .1),
+    bg-form-control--autofilled:        #3A4144,
+    bg-form-control--autofilled__hover: #444B4D,
+    bg-form-control--autofilled__focus: #20272A,
+    bg-toggle--switch:                  rgba($color-white, .5),
+    bg-toggle--switch__hover:           $color-white,
+    bg-toggle--trigger__on__disabled:   rgba($color-cyan, .5),
+    // -- dropdowns
+    bg-dropdown--item__hover:           rgba($color-black, .1),
+    bg-dropdown--item__active:          rgba($color-black, .3),
+    // -- charts
+    bg-chart-overlay:                   rgba($color-darkSlate, .8),
+    bg-chart__scrollable:               rgba($color-black, .1),
+    // -- confusion matrix
+    bg-conf-matrix--row:                rgba($color-black, .1),
+    bg-conf-matrix--cell__important:    rgba($color-black, .3),
+    // -- page badge
+    bg-page-badge:                      rgba($color-black, .1),
+    // -- tags
+    bg-tag-highlighted:                 rgba($color-cyan, .3),
+  ),
+  light: (
+    // colors
+    color-text-highlighted:             rgba($color-black, .9),
+    color-text-75:                      rgba($color-black, .75),
+    color-text:                         rgba($color-black, .6),
+    color-text-plain:                   #606060,
+    color-text-disabled:                rgba($color-black, .3),
+    color-primary:                      $color-deepSkyBlue,
+    color-secondary:                    $color-deepSkyBlue,
+    color-secondary__highlight:         $color-deepSkyBlue,
+    color-theme:                        $color-white,
+    color-opposite:                     $color-black,
+    color-button-text:                  rgba($color-white, .9),
+    color-button-text__active:          $color-deepSkyBlue,
+    // shadows
+    box-shadow-default:                 0 2px 4px 0 rgba($color-black, .15),
+    box-shadow-cards-hover:             0 4px 10px 0 rgba($color-black, .25),
+    box-shadow-dropdown:                0 16px 30px 0 rgba($color-black, .25),
+    box-shadow-chart--selected-bar:     url("#bar-shadow-light"),
+    // backgrounds
+    // -- general
+    bg-body:                            #f6f6f6,
+    bg-sidebar-overlay:                 rgba($color-black, .03),
+    bg-card:                            $color-white,
+    bg-code:                            rgba($color-black, .05),
+    bg-separator:                       rgba($color-black, .1),
+    bg-separator__intensive:            rgba($color-black, .3),
+    // -- tables
+    bg-table--row__even:                rgba($color-black, .03),
+    bg-table--row__active:              rgba($color-deepSkyBlue, .1),
+    bg-table--header-cell__hover:       rgba($color-black, .03),
+    bg-table--header-cell__active:      rgba($color-black, .05),
+    bg-combined-table--sidebar:         rgba($color-black, .05),
+    bg-combined-table--sidebar-border:  rgba($color-black, .2),
+    // -- scroll
+    bg-scroll-track:                    rgba($color-black, .1),
+    bg-scroll-thumb:                    rgba($color-black, .3),
+    bg-scroll-thumb--border:            #dcdcdc,
+    // -- tabs
+    bg-tab__hover:                      rgba($color-black, .05),
+    bg-tab__active:                     rgba($color-deepSkyBlue, .1),
+    // -- buttons
+    bg-nav-button__hover:               rgba($color-black, .1),
+    bg-nav-button__active:              rgba($color-deepSkyBlue, .1),
+    bg-nav-step:                        rgba($color-black, .05),
+    bg-nav-step__hover:                 rgba($color-black, .1),
+    bg-nav-step__active:                rgba($color-deepSkyBlue, .1),
+    bg-account-btn:                     rgba($color-black, .1),
+    bg-account-btn__hover:              rgba($color-black, .05),
+    bg-button__primary:                 rgba($color-deepSkyBlue, .9),
+    bg-button__primary__hover:          $color-deepSkyBlue,
+    bg-button__primary__active:         darken($color-deepSkyBlue, 2%),
+    bg-button__danger:                  rgba($color-danger, .9),
+    bg-button__danger__hover:           $color-danger,
+    bg-button__danger__active:          darken($color-danger, 5%),
+    bg-button__secondary:               rgba($color-black, .1),
+    bg-button__secondary__hover:        rgba($color-black, .15),
+    bg-button__secondary__active:       rgba($color-deepSkyBlue, .2),
+    bg-button__ghost__hover:            rgba($color-black, .15),
+    bg-icon-button__hover:              rgba($color-black, .1),
+    bg-icon-button__active:             rgba($color-deepSkyBlue, .1),
+    bg-icon-button__danger__active:     rgba($color-danger, .1),
+    // -- form controls
+    bg-form-control:                    rgba($color-black, .05),
+    bg-form-control__hover:             rgba($color-black, .1),
+    bg-form-control__focus:             transparent,
+    bg-form-control--autofilled:        #e9e9e9,
+    bg-form-control--autofilled__hover: #dcdcdc,
+    bg-form-control--autofilled__focus: #f6f6f6,
+    bg-toggle--switch:                  rgba($color-black, .3),
+    bg-toggle--switch__hover:           rgba($color-black, .4),
+    bg-toggle--trigger__on__disabled:   rgba($color-deepSkyBlue, .3),
+    // -- dropdowns
+    bg-dropdown--item__hover:           rgba($color-black, .05),
+    bg-dropdown--item__active:          rgba($color-deepSkyBlue, .1),
+    // -- charts
+    bg-chart-overlay:                   rgba($color-white, .9),
+    bg-chart__scrollable:               rgba($color-black, .03),
+    // -- confusion matrix
+    bg-conf-matrix--row:                transparent,
+    bg-conf-matrix--cell__important:    rgba($color-black, .03),
+    // -- page badge
+    bg-page-badge:                      rgba($color-deepSkyBlue, .1),
+    // -- tags
+    bg-tag-highlighted:                 rgba($color-deepSkyBlue, .2),
+  ),
+);

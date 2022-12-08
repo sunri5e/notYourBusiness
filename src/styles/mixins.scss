@@ -1,0 +1,108 @@
+/*
+* Implementation of themes
+*/
+@function themed($key) {
+  @return map-get($theme-map, $key);
+}
+
+@mixin themify($themes, $globalParent: false) {
+  @if $globalParent == false {
+    @each $theme, $map in $themes {
+      .app-theme-#{$theme} & {
+        $theme-map: () !global;
+        @each $key, $submap in $map {
+          $value: map-get(map-get($themes, $theme), '#{$key}');
+          $theme-map: map-merge($theme-map, ($key: $value)) !global;
+        }
+        @content;
+        $theme-map: null !global;
+      }
+    }
+  } @else {
+    @each $theme, $map in $themes {
+      .app-theme-#{$theme} {
+        $theme-map: () !global;
+        @each $key, $submap in $map {
+          $value: map-get(map-get($themes, $theme), '#{$key}');
+          $theme-map: map-merge($theme-map, ($key: $value)) !global;
+        }
+        @content;
+        $theme-map: null !global;
+      }
+    }
+  }
+}
+
+@mixin generateIndentation($class-core, $arr, $params, $negative: false) {
+  @if $negative == true {
+    @each $step in $arr {
+      @if $step != a {
+        .#{$class-core}-#{$step} {
+          @each $param in $params {
+            #{$param}: -#{$size-base * $step};
+          }
+        }
+      }
+    }
+  }
+  @else {
+    @each $step in $arr {
+      @if $step == a {
+        .#{$class-core}-a {
+          @each $param in $params {
+            #{$param}: auto;
+          }
+        }
+      }
+      @else {
+        .#{$class-core}-#{$step} {
+          @each $param in $params {
+            #{$param}: $size-base * $step;
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {
+    @content;
+  }
+  &::-moz-placholder {
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
+  }
+}
+
+@mixin DCAcustomScroll {
+  &::-webkit-scrollbar-track {
+    width: $size-base * 2;
+    @include themify($themes) {
+      background-color: var(--bg-scroll-track);
+    }
+  }
+  &::-webkit-scrollbar {
+    width: $size-base * 2;
+    height: $size-base * 2;
+    @include themify($themes) {
+      background-color: transparent;
+    }
+  }
+  &::-webkit-scrollbar-thumb {
+    height: $size-base;
+    border-radius: $size-base;
+    padding: 2px;
+    @include themify($themes) {
+      border: 2px solid var(--bg-scroll-thumb--border);
+      background-color: var(--bg-scroll-thumb);
+    }
+  }
+  &::-webkit-scrollbar-corner {
+    @include themify($themes) {
+      background-color: var(--bg-scroll-thumb--border);
+    }
+  }
+}
