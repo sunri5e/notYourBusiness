@@ -1,0 +1,78 @@
+$gridCount: 12;
+
+.app-l-grid {
+  display: grid;
+  grid-template-columns: repeat($gridCount, minmax(0, 1fr));
+  grid-gap: $size-base * 4;
+  & > * {
+    grid-column: span $gridCount;
+  }
+  &__align-start > * {
+    align-self: start;
+  }
+  &__align-stretch > * {
+    align-self: stretch;
+    & > * {
+      height: 100%;
+    }
+  }
+  &__draw-grid {
+    grid-gap: 0;
+    padding: 0 1px 1px 0;
+    & > * {
+      margin: 0 -1px -1px 0;
+      padding: 8px;
+      .app-theme-light & {
+        border: 1px solid #e5e5e5;
+      }
+      .app-theme-dark & {
+        border: 1px solid #495357;
+      }
+    }
+    .app-table--cell__header {
+      border-top: none;
+      &:first-child {
+        border-left: none;
+      }
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+  &__nospace-grid {
+    grid-gap: 0;
+  }
+  &__justify-start {
+    justify-self: start;
+  }
+  &__justify-end {
+    justify-self: end;
+  }
+  &__justify-center {
+    justify-self: center;
+  }
+  &--first-in-row {}
+  &--last-in-row {}
+}
+
+@for $i from 1 through $gridCount {
+  .app-l-grid--span-#{$i} {
+    grid-column: span #{$i};
+  }
+}
+
+@include respondFrom('xl') {
+  @for $i from 1 through $gridCount {
+    .app-l-grid--span-#{$i}-xl {
+      grid-column: span #{$i};
+    }
+  }
+};
+
+@include respondFrom('xxl') {
+  @for $i from 1 through $gridCount {
+    .app-l-grid--span-#{$i}-xxl {
+      grid-column: span #{$i};
+    }
+  }
+};

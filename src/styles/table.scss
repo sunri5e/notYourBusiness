@@ -1,0 +1,21 @@
+.app-table {
+  font-size: $fontSize-normal;
+  font-weight: $fontWeight-normal;
+  margin-bottom: $size-base * 4;
+  border-collapse: collapse;
+  border: 1px solid var(--bg-separator);
+  color: var(--color-text-highlighted);
+  tr {
+    &:nth-child(even) td {
+      background-color: var(--bg-table--row__even);
+    }
+  }
+  td,
+  th {
+    padding: $size-base * 2;
+    line-height: 1.4;
+  }
+  th {
+    border: 1px solid var(--bg-separator);
+  }
+}

@@ -1,24 +1,33 @@
 import React, { useState } from "react";
 
 const FormField = ({
-  name, label, type, isAutoFocus, fieldClassName,
-  placeholder, onChange, className, fieldProps, disabled, value,
+  name,
+  label,
+  type,
+  fieldClassName,
+  onBlur,
+  placeholder,
+  onChange,
+  className,
+  disabled,
+  value,
 }) => (
   <div className={`app-form-group ${className}`}>
     {label && (
-    <label className="app-form-label" htmlFor={name}>{label}</label>
+      <label className="app-form-label" htmlFor={name}>
+        {label}
+      </label>
     )}
     <input
       placeholder={placeholder}
       type={type}
       name={name}
       id={name}
-      fieldProps={fieldProps}
       className={`app-form-control ${fieldClassName}`}
       onChange={onChange}
+      onBlur={onBlur}
       value={value}
       disabled={disabled}
-      isAutoFocus={isAutoFocus}
     />
   </div>
 );

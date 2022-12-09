@@ -7,35 +7,56 @@ $font-condensed: "Roboto Condensed", "Arial Narrow", "sans-serif" !default;
 /**
 * Define font sizes by rems.
 */
-$fontSize-largest:  1.5rem !default;    // 24px
-$fontSize-larger:   1.125rem !default;  // 18px
-$fontSize-large:    1rem !default;      // 16px
-$fontSize-normal:   0.875rem !default;  // 14px
-$fontSize-small:    0.8124rem !default; // 13px
-$fontSize-smaller:  0.75rem !default;   // 12px
-$fontSize-smallest: 0.625rem !default;  // 10px
+$fontSize-largest: 1.5rem !default; // 24px
+$fontSize-larger: 1.125rem !default; // 18px
+$fontSize-large: 1rem !default; // 16px
+$fontSize-normal: 0.875rem !default; // 14px
+$fontSize-small: 0.8124rem !default; // 13px
+$fontSize-smaller: 0.75rem !default; // 12px
+$fontSize-smallest: 0.625rem !default; // 10px
 
 /**
 * Define some font weights that work for your fonts.
 */
 $fontWeight-boldest: 900 !default;
-$fontWeight-bolder:  700 !default; // medium for Archer, same as bold
-$fontWeight-bold:    700 !default; // medium
-$fontWeight-medium:  500 !default; // medium
-$fontWeight-normal:  400 !default; // book, same as normal
-$fontWeight-light:   300 !default; // light
+$fontWeight-bolder: 700 !default; // medium for Archer, same as bold
+$fontWeight-bold: 700 !default; // medium
+$fontWeight-medium: 500 !default; // medium
+$fontWeight-normal: 400 !default; // book, same as normal
+$fontWeight-light: 300 !default; // light
 $fontWeight-lighter: 200 !default; // extra light
 
 /**
 * Define layering z-indexes.
 */
 $zIndex: (
-  modal         : 9000,
-  pageBarLoader : 8000,
-  header        : 7000,
-  toaster       : 6000,
-  sidebarHover  : 5000,
-  dropdown      : 4000,
-  sidebar       : 3000,
-  subheader     : 2000
+  modal: 9000,
+  pageBarLoader: 8000,
+  header: 7000,
+  toaster: 6000,
+  sidebarHover: 5000,
+  dropdown: 4000,
+  sidebar: 3000,
+  subheader: 2000,
+);
+
+/**
+* Breakpoints are app specific and should define when you want your app to respond to a certain window width
+*/
+$breakpoints: (
+  "sm": (
+    min-width: 0px,
+  ),
+  "md": (
+    min-width: 640px,
+  ),
+  "lg": (
+    min-width: 1024px,
+  ),
+  "xl": (
+    min-width: 1200px,
+  ),
+  "xxl": (
+    min-width: 1440px,
+  ),
 );

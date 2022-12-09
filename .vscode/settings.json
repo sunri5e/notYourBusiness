@@ -1,0 +1,6 @@
+{
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "prettier.configPath": "./.prettierrc.json",
+  "eslint.workingDirectories": ["./"],
+}
