@@ -1,5 +1,5 @@
 {
-  "extends": ["next/core-web-vitals", "airbnb", "prettier"],
+  "extends": ["airbnb", "prettier"],
   "parser": "@babel/eslint-parser",
   "parserOptions": {
     "ecmaVersion": 6,

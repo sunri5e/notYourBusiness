@@ -2,3 +2,51 @@
   max-width: $size-base * 300;
   margin: 0 auto;
 }
+
+// Flex layout
+.app-l-flex-row {
+  display: flex;
+  &__space-between {
+    justify-content: space-between;
+  }
+  &__align-baseline {
+    align-items: baseline;
+  }
+  &__align-center {
+    align-items: center;
+  }
+  &__align-top {
+    align-items: flex-start;
+  }
+  &__align-bottom {
+    align-items: flex-end;
+  }
+}
+
+.app-l-flex-column {
+  display: flex;
+  flex-direction: column;
+  &__space-between {
+    justify-content: space-between;
+  }
+  &__justify-center {
+    justify-content: center;
+  }
+  &__align-center {
+    align-items: center;
+  }
+  &__align-left {
+    align-items: flex-start;
+  }
+  &__align-right {
+    align-items: flex-end;
+  }
+}
+
+.app-l-flex-1 {
+  flex: 1;
+}
+
+.app-l-self-stretch {
+  align-self: stretch;
+}

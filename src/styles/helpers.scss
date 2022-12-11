@@ -64,6 +64,9 @@
 .app-h-fz-normal {
   font-size: $fontSize-normal !important;
 }
+.app-h-fz-smaller {
+  font-size: $fontSize-smaller;
+}
 .app-h-fz-smallest {
   font-size: $fontSize-smallest;
 }
@@ -74,4 +77,36 @@
 }
 .app-h-no-event {
   pointer-events: none;
+}
+
+// *** Utils ***
+.app-h-position-relative {
+  position: relative;
+}
+.app-h-position-static {
+  position: static;
+}
+.app-h-position-absolute {
+  position: absolute;
+}
+.app-h-position-fixed {
+  position: fixed;
+}
+.app-h-position-sticky {
+  position: sticky;
+  top: 0;
+}
+.app-h-positioned-in-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// *** Separation ***
+.app-h-bordered-top {
+  border-top: 1px solid var(--bg-separator);
+}
+.app-h-bordered-bottom {
+  border-bottom: 1px solid var(--bg-separator);
 }

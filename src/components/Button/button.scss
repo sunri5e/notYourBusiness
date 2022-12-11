@@ -1,0 +1,163 @@
+.app-button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: $fontSize-normal;
+  line-height: $size-base * 9;
+  height: $size-base * 9;
+  border-radius: $size-base * 1.5;
+  position: relative;
+  padding: 0 $size-base * 4;
+  transition: background-color 0.2s, color 0.2s;
+  color: var(--color-text-highlighted);
+  &:before {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: $size-base * 1.5;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  &:hover,
+  &:focus {
+    &:before {
+      opacity: 1;
+    }
+  }
+  &:active {
+    &:before {
+      display: none;
+    }
+  }
+  &:disabled,
+  &__disabled {
+    cursor: default;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+  &__size-m {
+    height: $size-base * 7;
+    line-height: $size-base * 7;
+    font-size: $fontSize-smaller;
+  }
+  &__size-s {
+    height: $size-base * 5;
+    line-height: $size-base * 5;
+    padding: 0 $size-base * 3;
+    font-size: $fontSize-smaller;
+  }
+  &__block {
+    display: block;
+    width: 100%;
+  }
+  &__link {
+    background: transparent;
+    border: none;
+    padding: 0;
+    line-height: inherit;
+    height: auto;
+    transition: color 0.2s;
+    font-size: inherit;
+    color: var(--color-secondary);
+    &:before {
+      display: none;
+    }
+    &:hover {
+      text-decoration: none;
+      cursor: pointer;
+      color: var(--color-secondary__lighten);
+    }
+    .app-button--text {
+      left: inherit;
+    }
+  }
+  &__ghost {
+    color: var(--color-text);
+    &:hover {
+      background-color: var(--bg-button__ghost__hover);
+      color: var(--color-text-highlighted);
+    }
+    &:active {
+      background-color: rgba(var(--RGB_color-secondary), 0.1);
+      color: var(--color-secondary);
+    }
+    &.app-button__block {
+      background-color: rgba(0, 0, 0, 0.1);
+      color: var(--color-text-highlighted);
+    }
+  }
+  &--text {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    & > *:not(.app-icon) {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  &--group {
+    & > * {
+      margin-right: $size-base * 2;
+    }
+    &__align-right {
+      display: flex;
+      justify-content: flex-end;
+      & > * {
+        margin-right: 0;
+        margin-left: $size-base * 2;
+      }
+    }
+    &__vertical {
+      display: flex;
+      flex-direction: column;
+      & > * {
+        margin-right: 0;
+        margin-top: $size-base * 1.5;
+      }
+    }
+    .app-form-group.app-h-position-relative & {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      top: 100%;
+      z-index: 1;
+      &__align-right {
+        left: auto;
+        right: 0;
+        width: auto;
+      }
+    }
+  }
+  .app-tooltip {
+    z-index: 1;
+  }
+  .app-tooltip__fixed {
+    z-index: #{map-get($zIndex, dropdown) + 2};
+  }
+}
+
+.app-button__primary {
+  background: var(--bg-button__primary);
+  color: var(--color-button-text);
+  &:before {
+    content: "";
+    background: var(--bg-button__primary__before);
+  }
+  &:hover {
+    background-color: var(--bg-button__primary__hover);
+    color: var(--color-button-text);
+  }
+  &:active {
+    background: var(--bg-button__primary__active);
+    &:before {
+      opacity: 0;
+    }
+  }
+}
