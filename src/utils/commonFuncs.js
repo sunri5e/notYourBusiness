@@ -1,16 +1,20 @@
+import { TAKE_PROFIT, LONG } from "./constants";
+
 export const roundPlaces = (num, places) => +`${Math.round(`${num}e+${places}`)}e-${places}`;
 
-export const calculateDcaGrid = (price, data, posType) => {
+export const calculateDcaGrid = (price, data) => {
   let arr = [];
   const {
+    positionType = LONG,
     entryPrice = 0,
-    takeProfit = 0,
+    takeProfitSize = 0,
     baseOrderSize = 0,
     safetyOrderSize = 0,
     maxSafetyOrdersCount = 0,
     priceDeviationToOpenSafetyOrders = 0,
     safetyOrderStepScale = 0,
     safetyOrderVolumeScale = 0,
+    orderCloseType = TAKE_PROFIT,
   } = data;
   const priceToUse = price || entryPrice;
 
@@ -21,14 +25,15 @@ export const calculateDcaGrid = (price, data, posType) => {
   }));
 
   // Calculate deviation
+  const deviationDirection = positionType === LONG ? -1 : 1;
   for (let i = 0; i < arr.length; i++) {
     if (i === 0) {
       arr[i].deviation = 0;
     } else if (i === 1) {
-      arr[i].deviation = Number(priceDeviationToOpenSafetyOrders);
+      arr[i].deviation = Number(priceDeviationToOpenSafetyOrders) * deviationDirection;
     } else {
       arr[i].deviation =
-        Number(priceDeviationToOpenSafetyOrders) +
+        Number(priceDeviationToOpenSafetyOrders) * deviationDirection +
         arr[i - 1].deviation * Number(safetyOrderStepScale);
     }
   }
@@ -37,12 +42,7 @@ export const calculateDcaGrid = (price, data, posType) => {
     // Calculate order price
     .map((e, i) => ({
       ...e,
-      entryPrice:
-        i === 0
-          ? Number(priceToUse)
-          : posType === "long"
-          ? Number(priceToUse) * (1 - arr[i].deviation / 100)
-          : Number(priceToUse) * (1 + arr[i].deviation / 100),
+      entryPrice: i === 0 ? Number(priceToUse) : Number(priceToUse) * (1 + arr[i].deviation / 100),
     }))
     // Calculate order volume
     .map((e, i) => ({
@@ -73,10 +73,14 @@ export const calculateDcaGrid = (price, data, posType) => {
       averageOrderPrice: e.totalOrderCost / e.totalOrderSize,
     }))
     // Calculate required price to reach take profit for total volume
-    .map((e) => ({
-      ...e,
-      requiredPrice: Number(e.averageOrderPrice * (1 + Number(takeProfit) / 100)),
-    }));
+    .map((e) => {
+      const TP =
+        positionType === LONG ? 1 + Number(takeProfitSize) / 100 : 1 - Number(takeProfitSize) / 100;
+      return {
+        ...e,
+        requiredPrice: orderCloseType === TAKE_PROFIT ? Number(e.averageOrderPrice * TP) : null,
+      };
+    });
 
   return arr;
 };

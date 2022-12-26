@@ -1,7 +1,16 @@
 import React from "react";
 import { roundPlaces } from "../../utils/commonFuncs";
+import { LONG } from "../../utils/constants";
 
-const GridTable = ({ data = [], totalLow = 0, index, changeTrigger, className }) => {
+const GridTable = ({
+  data = [],
+  extremum = 0,
+  index,
+  changeTrigger,
+  className,
+  positionType,
+  coreGrid,
+}) => {
   return (
     <table key={index} className={`app-table ${className}`}>
       <thead>
@@ -47,9 +56,9 @@ const GridTable = ({ data = [], totalLow = 0, index, changeTrigger, className })
         </tr>
       </thead>
       <tbody className="app-h-fz-smaller">
-        {data.map(
-          (item, i) =>
-            item.entryPrice >= totalLow && (
+        {data.map((item, i) => {
+          if (coreGrid) {
+            return (
               <tr key={i}>
                 <td>
                   <span>{item.orderNumber}</span>
@@ -81,16 +90,63 @@ const GridTable = ({ data = [], totalLow = 0, index, changeTrigger, className })
                   <span>{roundPlaces(item.averageOrderPrice, 4)}</span>
                 </td>
                 <td>
-                  <span>{roundPlaces(item.requiredPrice, 4)}</span>
+                  <span>{item.requiredPrice ? roundPlaces(item.requiredPrice, 4) : `---`}</span>
                 </td>
                 {/* <td>
-                      <span>{item.requiredChange}</span>
-                    </td> */}
+                        <span>{item.requiredChange}</span>
+                      </td> */}
                 <td>{roundPlaces(item.totalOrderSize, 2)}</td>
                 <td>{roundPlaces(item.totalOrderCost, 2)}</td>
               </tr>
-            )
-        )}
+            );
+          } else {
+            const condition =
+              positionType === LONG ? item.entryPrice >= extremum : item.entryPrice <= extremum;
+            if (condition) {
+              return (
+                <tr key={i}>
+                  <td>
+                    <span>{item.orderNumber}</span>
+                  </td>
+                  <td>
+                    <span>{roundPlaces(item.deviation, 2)}</span>
+                  </td>
+                  <td>{roundPlaces(item.orderSize, 2)}</td>
+                  <td>{roundPlaces(item.orderVolume, 2)}</td>
+                  <td>
+                    <span
+                      className={`${
+                        changeTrigger && i === 0 ? "app-h-color-primary app-h-cursor-pointer" : ""
+                      }`}
+                      onClick={
+                        changeTrigger && i === 0
+                          ? (e) => {
+                              changeTrigger({
+                                target: { name: "entryPrice", value: e.target.innerText },
+                              });
+                            }
+                          : () => {}
+                      }
+                    >
+                      {roundPlaces(item.entryPrice, 4)}
+                    </span>
+                  </td>
+                  <td>
+                    <span>{roundPlaces(item.averageOrderPrice, 4)}</span>
+                  </td>
+                  <td>
+                    <span>{item.requiredPrice ? roundPlaces(item.requiredPrice, 4) : `---`}</span>
+                  </td>
+                  {/* <td>
+                        <span>{item.requiredChange}</span>
+                      </td> */}
+                  <td>{roundPlaces(item.totalOrderSize, 2)}</td>
+                  <td>{roundPlaces(item.totalOrderCost, 2)}</td>
+                </tr>
+              );
+            }
+          }
+        })}
       </tbody>
     </table>
   );

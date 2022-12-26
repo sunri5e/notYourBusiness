@@ -110,3 +110,14 @@
 .app-h-bordered-bottom {
   border-bottom: 1px solid var(--bg-separator);
 }
+
+// *** Dimensions ***
+// Width and Height
+@for $i from 1 through 20 {
+  .app-h-w#{$i * 5} {
+    width: #{$i * 5%};
+  }
+  .app-h-h#{$i * 5} {
+    height: #{$i * 5%};
+  }
+}

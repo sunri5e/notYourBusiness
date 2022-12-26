@@ -11,6 +11,7 @@ const FormField = ({
   className,
   disabled,
   value,
+  options,
 }) => (
   <div className={`app-form-group ${className}`}>
     {label && (
@@ -18,17 +19,41 @@ const FormField = ({
         {label}
       </label>
     )}
-    <input
-      placeholder={placeholder}
-      type={type}
-      name={name}
-      id={name}
-      className={`app-form-control ${fieldClassName}`}
-      onChange={onChange}
-      onBlur={onBlur}
-      value={value}
-      disabled={disabled}
-    />
+    {type === "select" ? (
+      <select
+        name={name}
+        id={name}
+        className={`app-form-control ${fieldClassName}`}
+        onChange={onChange}
+        onBlur={onBlur}
+        value={value}
+        disabled={disabled}
+      >
+        {placeholder && (
+          <option value="" disabled selected>
+            {placeholder}
+          </option>
+        )}
+        {options &&
+          options.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+      </select>
+    ) : (
+      <input
+        placeholder={placeholder}
+        type={type}
+        name={name}
+        id={name}
+        className={`app-form-control ${fieldClassName}`}
+        onChange={onChange}
+        onBlur={onBlur}
+        value={value}
+        disabled={disabled}
+      />
+    )}
   </div>
 );
 
