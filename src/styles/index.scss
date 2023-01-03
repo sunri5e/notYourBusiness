@@ -1,3 +1,7 @@
+@import "../assets/fonts/fontawesome-pro-5.7.1-web/fontawesome";
+@import "../assets/fonts/roboto/font-roboto";
+@import "../assets/fonts/roboto_condensed/font-roboto-condensed";
+
 @import "./normalize";
 @import "./colors";
 @import "./variables";
@@ -12,6 +16,9 @@
 @import "./form";
 @import "./table";
 @import "../components/Button/button";
+@import "../components/Icon/icon";
 @import "../components/Stats/statBlock";
+@import "../components/Modal/Modal";
+@import "../components/IconButton/iconButton";
 
 @import "./helpers";

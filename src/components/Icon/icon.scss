@@ -1,0 +1,41 @@
+// Ayasdi Inc. Copyright 2017 - all rights reserved.
+.app-icon {
+  fill: currentColor;
+  color: currentColor;
+  line-height: 1;
+  text-align: center;
+  display: inline-block;
+  width: $size-base * 3.5;
+  height: $size-base * 3.5;
+  font-size: $size-base * 3.5;
+  &__size-l {
+    width: $size-base * 4;
+    height: $size-base * 4;
+    font-size: $size-base * 4;
+  }
+  &__size-xl {
+    width: $size-base * 6;
+    height: $size-base * 6;
+    font-size: $size-base * 6;
+  }
+  &__size-xxl {
+    width: $size-base * 8;
+    height: $size-base * 8;
+    font-size: $size-base * 8;
+  }
+  &__size-s {
+    width: $size-base * 3;
+    height: $size-base * 3;
+    font-size: $size-base * 3;
+  }
+  &__size-xs {
+    width: $size-base * 2;
+    height: $size-base * 2;
+    font-size: $size-base * 2;
+  }
+}
+
+// Prevent IE freezing when clicking icons
+svg.app-icon use {
+  pointer-events: none;
+}

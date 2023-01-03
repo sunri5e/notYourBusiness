@@ -1,10 +1,18 @@
 import React, { useState } from "react";
 import moment from "moment";
 import { roundPlaces } from "../../utils/commonFuncs";
-import { LONG, SHORT } from "../../utils/constants";
+import { LONG, SHORT, CUMULATIVE } from "../../utils/constants";
 import GridTable from "../GridTable/GridTable";
 
-const SingleSituation = ({ situation, index, dcaGrid, changeTrigger, className, positionType }) => {
+const SingleSituation = ({
+  situation,
+  index,
+  dcaGrid,
+  changeTrigger,
+  className,
+  positionType,
+  depositGrowType,
+}) => {
   const [showTable, setShowTable] = useState(false);
 
   // const getGapClassName = () => {
@@ -17,12 +25,6 @@ const SingleSituation = ({ situation, index, dcaGrid, changeTrigger, className, 
   //   return className;
   // };
 
-  const percentagePnL = roundPlaces(
-    (positionType === LONG
-      ? situation.sitTargetPrice / situation.sitAveragePrice - 1
-      : 1 - situation.sitTargetPrice / situation.sitAveragePrice) * 100,
-    2
-  );
   const PnLClassName =
     roundPlaces(situation.sitTargetPrice - situation.sitAveragePrice, 4) > 0
       ? positionType === LONG
@@ -66,18 +68,24 @@ const SingleSituation = ({ situation, index, dcaGrid, changeTrigger, className, 
         </span>{" "}
         <span>
           <span className="app-h-fz-smaller">total volume: </span>
-          <span>{situation.sitTotalVolume}</span>,
+          <span>{roundPlaces(situation.sitTotalVolume, 2)}</span>,
         </span>{" "}
         <span>
           <span className="app-h-fz-smaller">PnL, $: </span>
-          <span className={PnLClassName}>
-            {roundPlaces((situation.sitTotalVolume * percentagePnL) / 100, 2)}
-          </span>
-          ,
+          <span className={PnLClassName}>{roundPlaces(situation.currencyPnL, 2)}</span>,
         </span>{" "}
-        <span>
+        <span title="From total deposit">
           <span className="app-h-fz-smaller">PnL, %: </span>
-          <span className={PnLClassName}>{percentagePnL}</span>
+          <span className={PnLClassName}>
+            {roundPlaces(
+              (situation.currencyPnL /
+                (depositGrowType === CUMULATIVE
+                  ? situation.depositSize
+                  : situation.sitTotalVolume)) *
+                100,
+              2
+            )}
+          </span>
         </span>{" "}
         {/* <span>
           <span className="app-h-fz-smaller">price gap: </span>

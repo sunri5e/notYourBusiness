@@ -12,6 +12,7 @@ const FormField = ({
   disabled,
   value,
   options,
+  step,
 }) => (
   <div className={`app-form-group ${className}`}>
     {label && (
@@ -52,6 +53,7 @@ const FormField = ({
         onBlur={onBlur}
         value={value}
         disabled={disabled}
+        step={step}
       />
     )}
   </div>

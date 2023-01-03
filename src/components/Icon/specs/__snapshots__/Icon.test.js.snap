@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Icon /> adds an icon svg with the proper id 1`] = `
+<span
+  className="app-icon  "
+  style={Object {}}
+>
+  <i
+    className="fa fa-someicon"
+  />
+</span>
+`;

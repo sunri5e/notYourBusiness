@@ -1,0 +1,125 @@
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+.app-modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  z-index: map-get($zIndex, modal);
+  &--overlay {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    left: 0;
+    top: 0;
+  }
+  &--dialog {
+    position: relative;
+    overflow: auto;
+    max-height: 100vh;
+  }
+  &--body {
+    border-radius: 6px;
+    padding: $size-base * 4;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    margin: 20vh auto 0;
+    max-width: $size-base * 100;
+    transition: margin 0.3s;
+    background-color: var(--bg-card);
+    box-shadow: var(--box-shadow-dropdown);
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+  &--header {
+    display: flex;
+    grid-column: 2;
+  }
+  &--title {
+    font-size: $size-base * 4.5;
+    font-weight: $fontWeight-normal;
+    line-height: 1.33;
+    margin: 0;
+    color: var(--color-text-highlighted);
+  }
+  &--close {
+    margin: -#{$size-base * 3} -#{$size-base * 3} 0 auto;
+  }
+  &--pic {
+    margin-right: $size-base * 4;
+    grid-row: span 3;
+    color: var(--color-secondary);
+    &__warning {
+      color: $color-warning;
+    }
+    &__success {
+      color: $color-success;
+    }
+    &__danger {
+      color: $color-danger;
+    }
+  }
+  &--content {
+    grid-column: 2;
+    padding-top: $size-base;
+    color: var(--color-text);
+  }
+  &--footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: $size-base * 4;
+    grid-column: 2;
+    & > * {
+      margin-right: $size-base * 2;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+  &__is-open {
+    opacity: 1;
+    pointer-events: auto;
+    .app-modal--dialog {
+      padding-right: 15px;
+    }
+    .app-modal--body {
+      margin: 10vh auto 15vh;
+    }
+  }
+  &__is-invalid {
+    animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+  &__size-l {
+    .app-modal--body {
+      max-width: $size-base * 260;
+    }
+  }
+}

@@ -1,0 +1,51 @@
+// Ayasdi Inc. Copyright 2017 - all rights reserved.
+.app-button__icon-button {
+  padding: 0 $size-base * 2.5;
+  line-height: 1;
+  color: var(--color-text);
+  &:hover,
+  &:focus {
+    &:before {
+      display: none;
+    }
+  }
+  &:hover {
+    background-color: var(--bg-icon-button__hover);
+    color: var(--color-text-highlighted);
+  }
+  &:active,
+  &.app-button__active {
+    background-color: var(--bg-icon-button__active);
+    color: var(--color-button-text__active);
+  }
+  &:disabled {
+    cursor: default;
+  }
+  &.app-button__size-m {
+    padding: 0 $size-base * 1.75;
+  }
+  &.app-button__size-s {
+    padding: $size-base;
+  }
+  &.app-button__danger {
+    background-color: transparent;
+    background: none;
+    &:hover,
+    &:focus {
+      color: $color-danger,
+    }
+    &:active,
+    &.app-button__active {
+      background: none;
+      color: $color-danger;
+      background-color: var(--bg-icon-button__danger__active);
+    }
+  }
+  &.app-button__floating {
+    box-shadow: var(--box-shadow-default);
+    background-color: var(--bg-card);
+    .app-button--text {
+      position: static;
+    }
+  }
+}

@@ -1,0 +1,39 @@
+/* roboto-condensed-300 - latin */
+@font-face {
+  font-family: "Roboto Condensed";
+  font-style: normal;
+  font-weight: 300;
+  src: local("Roboto Condensed Light"), local("RobotoCondensed-Light"),
+    url("roboto-condensed-v13-latin-300.woff2") format("woff2"),
+    url("roboto-condensed-v13-latin-300.woff") format("woff"),
+    url("RobotoCondensed-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Roboto Condensed";
+  src: url("RobotoCondensed-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* roboto-condensed-regular - latin */
+@font-face {
+  font-family: "Roboto Condensed";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Roboto Condensed"), local("RobotoCondensed-Regular"),
+    url("roboto-condensed-v13-latin-regular.woff2") format("woff2"),
+    url("roboto-condensed-v13-latin-regular.woff") format("woff"),
+    url("RobotoCondensed-Regular.ttf") format("truetype");
+}
+
+/* roboto-condensed-700 - latin */
+@font-face {
+  font-family: "Roboto Condensed";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Roboto Condensed Bold"), local("RobotoCondensed-Bold"),
+    url("roboto-condensed-v13-latin-700.woff2") format("woff2"),
+    url("roboto-condensed-v13-latin-700.woff") format("woff"),
+    url("RobotoCondensed-Bold.ttf") format("truetype");
+}
