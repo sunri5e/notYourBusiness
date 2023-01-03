@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from "react";
 import Papa from "papaparse";
 import moment from "moment";
-import Button from "./components/Button/Button";
-import Modal from "./components/Modal/Modal";
-import FormField from "./components/FormField/FormField";
-import RadioInput from "./components/RadioInput/RadioInput";
+import Button from "./components/general/Button/Button";
+import FormField from "./components/general/FormField/FormField";
+import RadioInput from "./components/general/RadioInput/RadioInput";
+import StatBlock from "./components/general/Stats/StatBlock";
 import GridCalculator from "./components/GridCalculator/GridCalculator";
 import SingleSituation from "./components/Situations/SingleSituation";
-import StatBlock from "./components/Stats/StatBlock";
-import { calculateDcaGrid, roundPlaces, calculateSituationsDCA } from "./utils/commonFuncs";
+import CombinatorModal from "./components/CombinatorModal/CombinatorModal";
+import {
+  calculateDcaGrid,
+  roundPlaces,
+  calculateSituationsDCA,
+  calcProfit,
+} from "./utils/commonFuncs";
 import { TAKE_PROFIT, LINE_CROSS, LONG, ITERATIVE } from "./utils/constants";
-// CUMULATIVE;
 
 function App() {
   const dcaParams = localStorage.getItem("dcaParams");
@@ -63,6 +67,11 @@ function App() {
     setSituations(situations);
   };
 
+  const getProfit = () => {
+    const profit = calcProfit({ settings, situations, dcaGrid, counts });
+    return profit;
+  };
+
   const compare = (a, b, key, asc) => {
     if (a[key] < b[key]) {
       return asc ? -1 : 1;
@@ -80,34 +89,6 @@ function App() {
 
     setSortOrder({ ...sortOrder, [key]: order });
     setSituations(situationsCopy.sort((a, b) => compare(a, b, key, order)));
-  };
-
-  const calcProfit = () => {
-    let profit = 0;
-    if (settings.orderCloseType === TAKE_PROFIT) {
-      profit = Object.keys(
-        Object.keys(counts)
-          .sort()
-          .reduce((obj, key) => {
-            obj[key] = counts[key];
-            return obj;
-          }, {})
-      )
-        .map((e, i) =>
-          dcaGrid[i] ? counts[e] * dcaGrid[i].totalOrderCost * (settings.takeProfitSize / 100) : 0
-        )
-        .reduce((partialSum, a) => partialSum + a, 0);
-    } else {
-      profit = situations
-        .map((e) =>
-          settings.positionType === LONG
-            ? e.sitTotalVolume * (e.sitTargetPrice / e.sitAveragePrice - 1)
-            : e.sitTotalVolume * (1 - e.sitTargetPrice / e.sitAveragePrice)
-        )
-        .reduce((partialSum, a) => partialSum + a, 0);
-    }
-
-    return profit;
   };
 
   useEffect(() => {
@@ -136,32 +117,8 @@ function App() {
           .filter((e) => !["time", "open", "high", "low", "close"].includes(e))
           .map((e) => ({ label: e, value: e }))
       );
-
-      // setAnalysisData(
-      //   parsedData.map((e) => ({
-      //     time: e.time,
-      //     low: e.low * settings.multiplyPriceTo,
-      //     high: e.high * settings.multiplyPriceTo,
-      //     [settings.orderStartCrossLine]:
-      //       e[settings.orderStartCrossLine] * settings.multiplyPriceTo,
-      //     [settings.orderCloseCrossLine]:
-      //       e[settings.orderCloseCrossLine] * settings.multiplyPriceTo,
-      //   }))
-      // );
     }
   }, [analysisData]);
-
-  // useEffect(() => {
-  //   setAnalysisData(
-  //     parsedData.map((e) => ({
-  //       time: e.time,
-  //       low: e.low * settings.multiplyPriceTo,
-  //       high: e.high * settings.multiplyPriceTo,
-  //       [settings.orderStartCrossLine]: e[settings.orderStartCrossLine] * settings.multiplyPriceTo,
-  //       [settings.orderCloseCrossLine]: e[settings.orderCloseCrossLine] * settings.multiplyPriceTo,
-  //     }))
-  //   );
-  // }, [settings.orderStartCrossLine, settings.orderCloseCrossLine, settings.multiplyPriceTo]);
 
   return (
     <>
@@ -305,7 +262,7 @@ function App() {
                   <div className="app-stats--item app-stats--item__highlighted app-stats--item__inline">
                     <div className="app-stats--value app-h-color-success">
                       {roundPlaces(
-                        settings.depositGrowType === ITERATIVE ? calcProfit() : finalDeposit,
+                        settings.depositGrowType === ITERATIVE ? getProfit() : finalDeposit,
                         2
                       )}
                     </div>
@@ -316,7 +273,7 @@ function App() {
                       {dcaGrid.length &&
                         roundPlaces(
                           settings.depositGrowType === ITERATIVE
-                            ? (calcProfit() / dcaGrid[dcaGrid.length - 1].totalOrderCost) * 100
+                            ? (getProfit() / dcaGrid[dcaGrid.length - 1].totalOrderCost) * 100
                             : (finalDeposit / settings.depositSize) * 100,
                           2
                         )}
@@ -388,10 +345,12 @@ function App() {
           />
         </div>
       </div>
-      <Modal
+      <CombinatorModal
         onClose={() => setIsCombinationModalShown(false)}
         isVisible={isCombinationModalShown}
         className="app-modal__size-l"
+        settings={settings}
+        analysisData={analysisData}
       />
     </>
   );

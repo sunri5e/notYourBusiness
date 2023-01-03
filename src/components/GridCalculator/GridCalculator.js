@@ -1,8 +1,8 @@
 import React from "react";
-import FormField from "../FormField/FormField";
-import RadioInput from "../RadioInput/RadioInput";
-import Checkbox from "../Checkbox/Checkbox";
-import Button from "../Button/Button";
+import FormField from "../general/FormField/FormField";
+import RadioInput from "../general/RadioInput/RadioInput";
+import Checkbox from "../general/Checkbox/Checkbox";
+import Button from "../general/Button/Button";
 import GridTable from "../GridTable/GridTable";
 import { LINE_CROSS, LONG, SHORT, CUMULATIVE, ITERATIVE } from "../../utils/constants";
 

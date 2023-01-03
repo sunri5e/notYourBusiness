@@ -274,7 +274,34 @@ export const calculateSituationsDCA = (props) => {
     }
   }
 
-  // setSituations(complexData);
-  console.log(complexData);
   return complexData;
+};
+
+export const calcProfit = (props) => {
+  const { settings, situations, dcaGrid, counts } = props;
+  let profit = 0;
+  if (settings.orderCloseType === TAKE_PROFIT) {
+    profit = Object.keys(
+      Object.keys(counts)
+        .sort()
+        .reduce((obj, key) => {
+          obj[key] = counts[key];
+          return obj;
+        }, {})
+    )
+      .map((e, i) =>
+        dcaGrid[i] ? counts[e] * dcaGrid[i].totalOrderCost * (settings.takeProfitSize / 100) : 0
+      )
+      .reduce((partialSum, a) => partialSum + a, 0);
+  } else {
+    profit = situations
+      .map((e) =>
+        settings.positionType === LONG
+          ? e.sitTotalVolume * (e.sitTargetPrice / e.sitAveragePrice - 1)
+          : e.sitTotalVolume * (1 - e.sitTargetPrice / e.sitAveragePrice)
+      )
+      .reduce((partialSum, a) => partialSum + a, 0);
+  }
+
+  return profit;
 };
